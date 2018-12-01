@@ -1,5 +1,6 @@
 package com.hzit.servlet;
 
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -9,12 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.plaf.synth.SynthSpinnerUI;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import com.hzit.constant.Constant;
+import com.hzit.entity.Exam;
 import com.hzit.entity.Paper;
 import com.hzit.entity.Question;
 import com.hzit.service.PaperService;
 import com.hzit.service.QuestionService;
 import com.hzit.servlet.base.BaseServlet;
+import com.hzit.util.HBUtil;
 
 /**
  * Servlet implementation class PagerServlet
@@ -79,6 +85,28 @@ public class PaperServlet extends BaseServlet {
 		request.setAttribute("cscore", cscore);
 		request.setAttribute("mainPage", "exam/examResult.jsp");
 //		int rscore = questionService.getExamOfResult(stuId,paperId);
+		
+		Exam exam = new Exam();
+		exam.setStudentId(stuId);
+		Timestamp examDate = new Timestamp(System.currentTimeMillis());
+		exam.setExamDate(examDate);
+		exam.setMoreScore(cscore);
+		exam.setSingleScore(rscore);
+		exam.setScore(rscore+cscore);
+		Paper paper = new Paper();
+		paper.setId(paperId);
+		Session session = HBUtil.getCurrentSession();
+		Transaction beginTransaction = session.beginTransaction();
+		try {
+			paper = session.get(Paper.class, paperId);
+			exam.setPaper(paper);
+			session.save(exam);
+			beginTransaction.commit();
+		} catch (Exception e) {
+			System.out.println("±£¥Êexam ß∞‹");
+			beginTransaction.rollback();
+			e.printStackTrace();
+		}
 		return "main.jsp";
 	}
 }

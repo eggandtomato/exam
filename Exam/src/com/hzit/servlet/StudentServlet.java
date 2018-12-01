@@ -75,7 +75,7 @@ public class StudentServlet extends BaseServlet {
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		return "main.jsp";
+		return "login.jsp";
 	}
 	
 	public String showAllStudents(HttpServletRequest request, HttpServletResponse response) {

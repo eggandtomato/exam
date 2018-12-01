@@ -1,5 +1,7 @@
 package test;
 
+import java.util.Arrays;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.Test;
@@ -10,13 +12,8 @@ import com.hzit.util.HBUtil;
 public class PaperTest {
 	@Test
 	public void getObj() {
-		Session session = HBUtil.getCurrentSession();
-		Transaction ts = session.beginTransaction();
-		try {
-			Paper p = session.load(Paper.class, 1);
-			System.out.println("P="+p);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		String str[] = "1,12,456,48,4,13,15,46".split(",");
+		Arrays.sort(str);
+		System.out.println(Arrays.asList(str));
 	}
 }
