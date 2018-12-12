@@ -73,4 +73,14 @@
     <servlet-name>ManagerServlet</servlet-name>
     <url-pattern>/manager</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Ajax</display-name>
+    <servlet-name>Ajax</servlet-name>
+    <servlet-class>com.hzit.servlet.Ajax</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Ajax</servlet-name>
+    <url-pattern>/Ajax</url-pattern>
+  </servlet-mapping>
 </web-app>
