@@ -34,7 +34,7 @@
 </head>
 <body >
 <div align="center" style="padding-top: 20px;" >
-		<form action="student" method="post" onsubmit="return checkForm()">
+		<form action="student_login" method="post" onsubmit="return checkForm()">
 		<table  width="1004" height="584" background="image/login.jpg" >
 			<tr height="200">
 				<td colspan="4"></td>
