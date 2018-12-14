@@ -1,5 +1,7 @@
 package com.hzit.action;
 
+import java.util.logging.Logger;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,9 +10,22 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.hzit.entity.Student;
+import com.hzit.service.StudentService;
 import com.hzit.util.HBUtil;
 import com.opensymphony.xwork2.ActionContext;
 
+/**
+ * @author tomato
+ *
+ */
+/**
+ * @author tomato
+ *
+ */
+/**
+ * @author tomato
+ *
+ */
 public class StudentAction {
 	private Student student;
 
@@ -20,6 +35,24 @@ public class StudentAction {
 
 	public void setStudent(Student student) {
 		this.student = student;
+	}
+
+	private StudentService studentService;
+
+	public void setStudentService(StudentService studentService) {
+		this.studentService = studentService;
+	}
+
+	/**
+	 * Ìí¼ÓStudent
+	 * 
+	 * @return
+	 */
+	public String addStudent() {
+		Logger log = Logger.getLogger("StudentAction");
+		log.info("Ö´ÐÐaddStudent==============");
+		studentService.save(student);
+		return "success";
 	}
 
 	public String login() {

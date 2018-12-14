@@ -2,13 +2,11 @@ package test;
 
 import java.util.Arrays;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.hzit.entity.Paper;
-import com.hzit.util.HBUtil;
-
+@RunWith(value = SpringJUnit4ClassRunner.class)
 public class PaperTest {
 	@Test
 	public void getObj() {

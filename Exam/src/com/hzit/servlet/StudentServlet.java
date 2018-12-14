@@ -11,6 +11,7 @@ import org.hibernate.Transaction;
 
 import com.hzit.entity.Student;
 import com.hzit.service.StudentService;
+import com.hzit.service.StudentServiceImpl;
 import com.hzit.servlet.base.BaseServlet;
 import com.hzit.util.HBUtil;
 
@@ -60,7 +61,7 @@ public class StudentServlet extends BaseServlet {
 	public String updatePassword(HttpServletRequest request, HttpServletResponse response) {
 		String newPassword = request.getParameter("student.password");
 		System.out.println("ÐÞ¸ÄÃÜÂë¡£¡£¡£");
-		StudentService service = new StudentService();
+		StudentService service = new StudentServiceImpl();
 		HttpSession session = request.getSession();
 		Student currentUser = (Student) session.getAttribute("currentUser");
 		currentUser.setPassword(newPassword);
@@ -80,7 +81,7 @@ public class StudentServlet extends BaseServlet {
 	
 	public String showAllStudents(HttpServletRequest request, HttpServletResponse response) {
 		request.setAttribute("mainPage", "student/studentList.jsp");
-		StudentService service = new StudentService();
+		StudentService service = new StudentServiceImpl();
 		List<Student> studentList = service.getStudentList();
 		request.setAttribute("studentList", studentList);
 		return "main.jsp";
